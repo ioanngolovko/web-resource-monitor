@@ -6,8 +6,12 @@ import org.testcontainers.containers.BrowserWebDriverContainer;
 
 public class WebResource {
 
-    private final BrowserWebDriverContainer chrome = new BrowserWebDriverContainer()
-            .withDesiredCapabilities(DesiredCapabilities.chrome());
+    public static synchronized  BrowserWebDriverContainer getContainer (){
+        return  new BrowserWebDriverContainer()
+                .withDesiredCapabilities(DesiredCapabilities.chrome());
+    }
+
+    private final BrowserWebDriverContainer chrome = getContainer();
 
     WebResource(String url) {
         chrome.start();

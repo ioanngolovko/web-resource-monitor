@@ -17,7 +17,7 @@ public class WebResourcesMonitor {
             webResource = resourceMap.computeIfAbsent(url, (u) -> new WebResource(u));
             return webResource.getContent();
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
 
             if (webResource != null) {
                 webResource.close();

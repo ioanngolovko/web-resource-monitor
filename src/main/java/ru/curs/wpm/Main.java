@@ -29,6 +29,10 @@ class ResourceWatcher implements Runnable {
             System.out.printf("%s: resource changed on %s%n",
                     sdf.format(new Date()), url
             );
+        } else {
+            System.out.printf("%s: resource NOT changed on %s%n",
+                    sdf.format(new Date()), url
+            );
         }
         oldValue = html;
     }

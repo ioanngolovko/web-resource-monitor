@@ -21,6 +21,11 @@
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>1.7.25</version>
         </dependency>
@@ -43,29 +48,29 @@
                 <configuration>
                     <archive>
                         <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
                             <mainClass>ru.curs.wpm.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.1.0</version>
+                <artifactId>maven-assembly-plugin</artifactId>
                 <executions>
                     <execution>
+                        <id>create library zip</id>
                         <phase>package</phase>
                         <goals>
-                            <goal>shade</goal>
+                            <goal>single</goal>
                         </goals>
                         <configuration>
-                            <artifactSet>
-                                <includes>
-                                    <include>org.testcontainers:selenium</include>
-                                    <include>org.seleniumhq.selenium:selenium-remote-driver</include>
-                                    <include>org.slf4j:slf4j-simple</include>
-                                </includes>
-                            </artifactSet>
+                            <finalName>libraries.zip</finalName>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <descriptors>
+                                <descriptor>src/assembly/lib_bin.xml</descriptor>
+                            </descriptors>
+                            <attach>false</attach>
                         </configuration>
                     </execution>
                 </executions>

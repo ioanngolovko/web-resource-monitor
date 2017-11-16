@@ -6,7 +6,7 @@ import org.testcontainers.containers.BrowserWebDriverContainer;
 
 public class WebResource {
 
-    public static synchronized  BrowserWebDriverContainer getContainer (){
+    public static  BrowserWebDriverContainer getContainer (){
         return  new BrowserWebDriverContainer()
                 .withDesiredCapabilities(DesiredCapabilities.chrome());
     }

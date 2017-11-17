@@ -1,5 +1,7 @@
 package ru.curs.wpm;
 
+import ru.curs.wpm.ru.curs.wpm.cdp.CdpResourcesMonitor;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -11,7 +13,9 @@ public class Main {
     public static void main(String args[]) throws InterruptedException {
         System.out.println("Hello, world");
 
-        IWebResourcesMonitor webResourcesMonitor = new WebResourcesMonitor(6);
+        IWebResourcesMonitor webResourcesMonitor =
+                //new WebResourcesMonitor(6);
+                new CdpResourcesMonitor();
 
         List<ResourceWatcher> watchers = Arrays.asList(
                 "https://time100.ru/online",

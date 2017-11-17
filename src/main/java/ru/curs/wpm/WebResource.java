@@ -4,10 +4,10 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testcontainers.containers.BrowserWebDriverContainer;
 
-public class WebResource {
+public class WebResource implements AutoCloseable {
 
-    public static  BrowserWebDriverContainer getContainer (){
-        return  new BrowserWebDriverContainer()
+    public static BrowserWebDriverContainer getContainer() {
+        return new BrowserWebDriverContainer()
                 .withDesiredCapabilities(DesiredCapabilities.chrome());
     }
 
@@ -23,7 +23,8 @@ public class WebResource {
         return chrome.getWebDriver().getPageSource();
     }
 
-    void close() {
+    @Override
+    public void close() {
         chrome.stop();
     }
 }

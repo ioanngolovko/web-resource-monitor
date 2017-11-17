@@ -13,11 +13,22 @@ public class Main {
     public static void main(String args[]) throws InterruptedException {
         System.out.println("Hello, world");
 
-        IWebResourcesMonitor webResourcesMonitor =
-                /*/
-                new WebResourcesMonitor(6);
-                /*/
-                new CdpResourcesMonitor();
+
+        final IWebResourcesMonitor webResourcesMonitor;
+
+        if (args.length > 0) {
+            switch (args[0]) {
+                case "docker":
+                    webResourcesMonitor = new WebResourcesMonitor(6);
+                    break;
+                default:
+                    webResourcesMonitor = new CdpResourcesMonitor();
+            }
+        } else {
+            webResourcesMonitor = new CdpResourcesMonitor();
+        }
+
+
         //*/
         List<ResourceWatcher> watchers = Arrays.asList(
                 "https://www.marathonbet.com/su/live/popular",

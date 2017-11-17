@@ -50,8 +50,9 @@ public class ChromePageSession implements AutoCloseable {
                     params.add("--user-data-dir=/var/log/flute");
                 }
                 sessionFactory = tempLauncher.launch(params);
+                System.out.printf("Connected to Chrome successfully for %s%n", targetUrl);
             } catch (CdpException e) {
-                System.out.printf("Cannot connect to Chrome, will retry: %s%n", e.getMessage());
+                System.out.printf("Cannot connect to Chrome for %s, will retry: %s%n", targetUrl, e.getMessage());
                 tempLauncher.getProcessManager().kill();
                 sessionFactory = null;
             }

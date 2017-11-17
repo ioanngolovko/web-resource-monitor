@@ -14,21 +14,24 @@ public class Main {
         System.out.println("Hello, world");
 
         IWebResourcesMonitor webResourcesMonitor =
-                //new WebResourcesMonitor(6);
+                /*/
+                new WebResourcesMonitor(6);
+                /*/
                 new CdpResourcesMonitor();
-
+        //*/
         List<ResourceWatcher> watchers = Arrays.asList(
-                "https://time100.ru/online",
-                "https://ria.ru/",
+                "https://www.marathonbet.com/su/live/popular",
+                "https://www.marathonbet.com/su/live/22723",
+                "https://www.marathonbet.com/su/popular/Football/?menu=11",
+                "https://www.marathonbet.com/su/popular/Tennis/?menu=2398",
+                //"https://time100.ru/online",
+                //"https://ria.ru/",
                 "https://www.ligastavok.ru/",
-                "http://online-bookmakers.ru/",
-                "https://betcity.ru/ru/",
+                //"http://online-bookmakers.ru/",
+                //"https://betcity.ru/ru/",
                 "https://www.fonbet.ru/#!/"
         ).stream().map(s -> new ResourceWatcher(s, webResourcesMonitor)).collect(Collectors.toList());
-
-
         Executors.newCachedThreadPool().invokeAll(watchers);
-
     }
 
 

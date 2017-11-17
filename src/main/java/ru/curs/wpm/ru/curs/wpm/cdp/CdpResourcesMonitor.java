@@ -14,8 +14,10 @@ public class CdpResourcesMonitor implements IWebResourcesMonitor {
             if (oldvalue != null) {
                 if (oldvalue.isHealthy())
                     return oldvalue;
-                else
+                else {
+                    System.out.printf("Session %s feels unhealthy. Close.%n", url);
                     oldvalue.close();
+                }
             }
             try {
                 return new ChromePageSession(url);
@@ -23,6 +25,8 @@ public class CdpResourcesMonitor implements IWebResourcesMonitor {
                 throw new IllegalStateException(e);
             }
         });
+        //get url to imitate real load
+        monitor.getURL();
         return monitor.getCode();
     }
 }

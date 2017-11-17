@@ -76,7 +76,7 @@
                             <goal>single</goal>
                         </goals>
                         <configuration>
-                            <finalName>libraries.zip</finalName>
+                            <finalName>lib</finalName>
                             <appendAssemblyId>false</appendAssemblyId>
                             <descriptors>
                                 <descriptor>src/assembly/lib_bin.xml</descriptor>

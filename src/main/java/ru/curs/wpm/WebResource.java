@@ -1,5 +1,6 @@
 package ru.curs.wpm;
 
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testcontainers.containers.BrowserWebDriverContainer;
@@ -7,8 +8,17 @@ import org.testcontainers.containers.BrowserWebDriverContainer;
 public class WebResource implements AutoCloseable {
 
     public static BrowserWebDriverContainer getContainer() {
+
+        DesiredCapabilities desiredCapabilities = DesiredCapabilities.chrome();
+
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--disable-gpu");
+
+        desiredCapabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
+
         return new BrowserWebDriverContainer()
-                .withDesiredCapabilities(DesiredCapabilities.chrome());
+                .withDesiredCapabilities(desiredCapabilities);
     }
 
     private final BrowserWebDriverContainer chrome = getContainer();
